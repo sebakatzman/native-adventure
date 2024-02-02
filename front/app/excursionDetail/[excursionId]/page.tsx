@@ -12,6 +12,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
+import { ReserveForm } from "@/components/Reserva/ReserveForm";
 
 export default function ExcursionDetail({
   params,
@@ -174,10 +175,10 @@ export default function ExcursionDetail({
 
         </div>
       )}
-
-      <div className="items-center py-8">
+      <ReserveForm excursionSelected={excursionSelected}></ReserveForm>
+      {/* <div className="items-center py-8">
           <Button color="warning" fullWidth onClick={reservar} >RESERVAR</Button>
-      </div>
+      </div> */}
 
       <div>
         <div className="flex flex-col gap-10">

@@ -20,6 +20,7 @@ class Section(models.Model):
     image = models.ImageField(upload_to='section_images/')
     icon =  models.FileField(upload_to='archivos_svg/')
     has_excursions = models.BooleanField()
+    order = models.PositiveIntegerField(null=True)  # Haciendo el campo "order" único
 
     def __str__(self):
         return f"{self.name}"
@@ -47,13 +48,14 @@ class Excursion(models.Model):
     available = models.BooleanField()
     duration = models.CharField(max_length=255)
     quantity_people = models.IntegerField()
-    price = models.IntegerField()
+    price = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='excursion_images/')
     description = models.TextField()
     difficulty = models.CharField(max_length=255)
     distance = models.CharField(max_length=255)
     slope = models.CharField(max_length=255)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(null=True)  # Haciendo el campo "order" único
 
     def __str__(self):
         return f"{self.name}"

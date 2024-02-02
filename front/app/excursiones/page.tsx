@@ -10,10 +10,19 @@ export default function ExcursionesPage() {
   const router = useRouter();
   const [sections, setSections] = useState<ISeccionExcursion[]>();
 
-  const getData = async () => {
-    const response = await axios.get<ISeccionExcursion[]>(`${process.env.base_url}sections`);    
-    setSections(response.data.filter((x) => x.has_excursions));
-  };
+ const getData = async () => {
+  try {
+    const response = await axios.get<ISeccionExcursion[]>(`${process.env.base_url}sections`);
+    
+    // Ordenar el array por la propiedad 'order'
+    const sortedSections = response.data.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    // Aplicar el filtro
+    setSections(sortedSections.filter((x) => x.has_excursions));
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 
   useEffect(() => {
     getData();
@@ -30,6 +39,7 @@ export default function ExcursionesPage() {
                 key={section.id}
                 className="p-4 rounded-lg shadow-md"
                 style={{ background: "#ffaa00" }}
+                onClick={() => router.push(`/excursiones/${section.id}`)}
               >
                 <h3 className="text-xl font-semibold mb-2">{section.name}</h3>
 

@@ -10,4 +10,5 @@ export interface ISeccionExcursion {
   has_excursions: boolean;
   excursions?: IExcurcion[];
   detailSections?: IDetailSection[];
+  order?: number;
 }

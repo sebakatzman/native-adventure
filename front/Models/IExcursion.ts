@@ -15,4 +15,5 @@ export interface IExcurcion {
   slope: string;
   section: number;
   imagesExcursion?: IImagesExcursion[];
+  order: number;
 }

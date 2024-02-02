@@ -27,8 +27,10 @@ export default function SectionDetail({
     const url = process.env.base_url;
     const response = await axios.get<IExcurcion[]>(`${url}excursions`);
     const filter = response.data.filter((x) => x.section == params.sectionId);
-    setExcursiones(filter);
-    setExcursionesFilter(filter);
+    const sortedSections = filter.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    setExcursiones(sortedSections);
+    setExcursionesFilter(sortedSections);
     const response2 = await axios.get<ISeccionExcursion[]>(`${url}sections`);
     const filter2 = response2.data.find((ex) => ex.id == params.sectionId);
     setSectionSelected(filter2);
@@ -101,9 +103,11 @@ export default function SectionDetail({
       <div className="pt-4">
         <div className="flex flex-wrap justify-around">
           {excursionesFilter?.map((excursion) => (
-            <div key={excursion.id} className={"p-4"}>
+            <div key={excursion.id} className={"p-4"} onClick={() =>
+              router.push(`/excursionDetail/${excursion.id}`)
+            }>
               <Card
-                className="max-w-sm"
+                className="max-w-sm rounded-inherit"
                 imgAlt="Meaningful alt text for an image that is not purely decorative"
                 imgSrc={excursion.image}
               >
@@ -111,7 +115,7 @@ export default function SectionDetail({
                   {excursion.name}
                 </h5>
 
-                <div style={{display: "flex", alignContent: "center", justifyContent: "space-around", alignItems: "center"}}>
+                {/* <div style={{display: "flex", alignContent: "center", justifyContent: "space-around", alignItems: "center"}}>
                   <div className="flex flex-col items-center p-2 color-black">
                     <AccessTimeFilledOutlinedIcon style={{ color: "black" }}></AccessTimeFilledOutlinedIcon>
                     <p style={{ color: "black" }}> {excursion.duration}</p>
@@ -127,7 +131,7 @@ export default function SectionDetail({
                     <p style={{ color: "black" }}> {excursion.difficulty} </p>
                   </div>
 
-                </div>
+                </div> */}
 
                 <div className="flex justify-around pb-2">
                   <Button
@@ -137,11 +141,11 @@ export default function SectionDetail({
                       router.push(`/excursionDetail/${excursion.id}`)
                     }
                   >
-                    DETALLE
+                    VER
                   </Button>
-                  <Button size="md" color="warning" onClick={() => router.push(`/reserva/${excursion.id}`)} >
+                  {/* <Button size="md" color="warning" onClick={() => router.push(`/reserva/${excursion.id}`)} >
                     RESERVAR
-                  </Button>
+                  </Button> */}
                 </div>
               </Card>
             </div>

@@ -17,6 +17,7 @@ import Image from "next/image";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useState } from "react";
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { Button } from "@nextui-org/button";
 export const Navbar = () => {
   const [whatsapp, setWhatsapp] = useState(`https://wa.me/2901614736`);
 
@@ -73,6 +74,21 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
+          {whatsapp && (
+            <Link href={whatsapp} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon style={{ color: "green" }} />
+            </Link>
+          )}
+
+          <Link href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer">
+            <InstagramIcon style={{ color: "#F45D7A" }} ></InstagramIcon>
+          </Link>
+
+          <a href="https://www.yaghanhostel.com" target="_blank" rel="noopener noreferrer">
+            <Button size="sm" color="warning">
+              YAGHAN HOSTEL
+            </Button>
+          </a>
         </ul>
       </NavbarContent>
 
@@ -84,8 +100,14 @@ export const Navbar = () => {
         )}
 
         <Link href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer">
-          <InstagramIcon style={{color: "#F45D7A"}} ></InstagramIcon>
+          <InstagramIcon style={{ color: "#F45D7A" }} ></InstagramIcon>
         </Link>
+
+        {/* <a href="https://www.yaghanhostel.com" target="_blank" rel="noopener noreferrer">
+          <Button size="sm" color="warning">
+            YAGHAN
+          </Button>
+        </a> */}
 
         {/* <ThemeSwitch /> */}
         <NavbarMenuToggle />

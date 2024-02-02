@@ -25,7 +25,7 @@ class CardAdmin(admin.ModelAdmin):
 
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'image', 'icon', 'has_excursions']
+    list_display = ['id', 'name', 'image', 'icon', 'has_excursions', 'order']
 
     def mostrar_imagen(self, obj):
         if obj.image:
@@ -45,7 +45,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Excursion)
 class ExcursionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'available', 'duration', 'quantity_people', 'price', 'image', 'description', 'difficulty', 'distance', 'slope', 'section']
+    list_display = ['id', 'name', 'available', 'duration', 'quantity_people', 'price', 'image', 'description', 'difficulty', 'distance', 'slope', 'section', 'order']
 
 @admin.register(ImagesExcursion)
 class ImagesExcursionAdmin(admin.ModelAdmin):

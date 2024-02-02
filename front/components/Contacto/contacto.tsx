@@ -30,6 +30,10 @@ function Contacto() {
     }
   };
 
+  const address = "Gdor. Deloqui 756, Ushuaia, Tierra del Fuego, Argentina";
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+
   return (
     <div>
       <SeccionBlack titulo={"Contacto"} descripcion={""}></SeccionBlack>
@@ -42,7 +46,11 @@ function Contacto() {
                 style={{ color: "#ffaa00", marginRight: "10px" }}
                 fontSize="small"
               />
-              {contact?.direccion}
+              <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+
+                {contact?.direccion}
+              </a>
+
             </p>
             <p style={{ color: "#ffaa00", fontWeight: "bold" }}>
               <a href={"tel:" + contact?.telefono}>
