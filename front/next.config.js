@@ -5,7 +5,7 @@ const nextConfig = {
     },    
     env: {
       //base_url: 'http://127.0.0.1:8000/api/'
-      base_url: 'https://panelnativeadventure.pythonanywhere.com/api/'
+      base_url: 'https://panelnativeadventure.pythonanywhere.com/api/' 
     },
 }
 module.exports = nextConfig;
