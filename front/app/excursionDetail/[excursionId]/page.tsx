@@ -1,11 +1,9 @@
 "use client";
 import { IExcurcion } from "@/Models/IExcursion";
-import { Button } from "@nextui-org/button";
-import { Carousel } from "flowbite-react";
+// import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Gallery } from "next-gallery";
 import axios, { AxiosResponse } from "axios";
 import { IImagesExcursion } from "@/Models/IImagesExcursion";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -13,12 +11,17 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import { ReserveForm } from "@/components/Reserva/ReserveForm";
+import Slider from "react-slick";
 
 export default function ExcursionDetail({
   params,
 }: {
   params: { excursionId: number };
 }) {
+  interface IImageRender {
+    src: string,
+    aspect_ratio: number
+  }
   const router = useRouter();
   const [excursionSelected, setExcursionSelected] = useState<IExcurcion>();
   const [images, setImages] = useState<IImageRender[]>([]);
@@ -44,11 +47,6 @@ export default function ExcursionDetail({
     }
   }
 
-  interface IImageRender {
-    src: string,
-    aspect_ratio: number
-  }
-
   const resolveImages = async (excursion: IExcurcion) => {
     let images;
     images = await getImages();
@@ -64,6 +62,8 @@ export default function ExcursionDetail({
         aspect_ratio: 16 / 9
       })
     }
+    console.log(imagesList);
+    
     setImages(imagesList)
   }
 
@@ -72,7 +72,6 @@ export default function ExcursionDetail({
       const urlCompleta = process.env.base_url + "images-excursions";
       const response: AxiosResponse<IImagesExcursion[]> = await axios.get(urlCompleta);
       const info: IImagesExcursion[] = response.data;
-
       const elemReturn: IImagesExcursion[] | null = info.filter(x => x.excursion == params.excursionId) ?? null;
       return elemReturn;
     } catch (error) {
@@ -85,58 +84,82 @@ export default function ExcursionDetail({
     getData();
   }, []);
 
-  const reservar = () => {
-    router.push('/reserva/' + params.excursionId);
-  }
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 2000, // Velocidad del autoplay en milisegundos
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
     <div>
       <h1
         style={{
           color: "##ffaa00",
-          fontSize: "70px",
+          fontSize: "50px",
           lineHeight: "82px",
           fontWeight: "700",
           fontFamily: "serif",
         }}
+        className="excursion-title"
       >
         {excursionSelected && excursionSelected.name.toUpperCase()}
       </h1>
 
-      <div className="h-56 sm:h-64 xl:h-100 2xl:h-96">
-        {images && images.length > 0 &&
-          <Carousel>
-            {images && images.length > 0 &&
-              images.map((imageEx) => (
-                <Image
-                  key={imageEx.src}
-                  src={imageEx.src}
-                  width={1200}
-                  alt="dsa"
-                  height={800}
-                  style={{ width: "100%", height: "auto" }}
-                />
-              ))}
-          </Carousel>
-        }
-      </div>
+    <div className="slider-container-excursion">
+      {images && (
+        <Slider {...settings}>
+          {images.map((image, index) => (
+            <div key={index} className="slide">
+              <Image
+                src={image.src}
+                alt={`Slide ${index + 1}`}
+                width={400}
+                height={200}
+                className="slide-image"
+              />
+            </div>
+          ))}
+        </Slider>
+      )}
+    </div> 
+    
+
       <div className="mt-8">
         <p className="text-lg leading-relaxed tracking-wide text-justify">
           {excursionSelected && excursionSelected.description}
         </p>
       </div>
-      <h1
-        style={{
-          color: "#ffaa00",
-          fontSize: "70px",
-          lineHeight: "82px",
-          fontWeight: "700",
-          fontFamily: "serif",
-          paddingTop: "30px"
-        }}
-      >
-        FICHA TECNICA
-      </h1>
 
       {excursionSelected && (
         <div
@@ -148,7 +171,6 @@ export default function ExcursionDetail({
             paddingInline: "40px"
           }}
         >
-
           <div className="flex flex-col items-center p-2">
             <WarningAmberIcon></WarningAmberIcon>
             <p>DIFICULTAD</p>
@@ -176,20 +198,6 @@ export default function ExcursionDetail({
         </div>
       )}
       <ReserveForm excursionSelected={excursionSelected}></ReserveForm>
-      {/* <div className="items-center py-8">
-          <Button color="warning" fullWidth onClick={reservar} >RESERVAR</Button>
-      </div> */}
-
-      <div>
-        <div className="flex flex-col gap-10">
-          <Gallery
-            widths={[1000, 2000, 1600]}
-            ratios={[2.2, 4, 6, 8]}
-            images={images}
-            lastRowBehavior="match-previous"
-          />
-        </div>
-      </div>
     </div>
   );
 }

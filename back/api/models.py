@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 class Card(models.Model):
     id = models.AutoField(primary_key=True)
-    firstTitle = models.CharField(max_length=255)
-    secondTitle = models.CharField(max_length=255)
+    firstTitle = models.CharField(max_length=255, null=True, blank=True)
+    secondTitle = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField()
     priority = models.IntegerField()
     # 'card_images/' es la carpeta donde se almacenarán las imágenes

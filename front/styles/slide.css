@@ -1,0 +1,29 @@
+.slider-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slick-list {
+    display: flex;
+    overflow: hidden; /* Asegura que el contenido fuera de la vista se oculte */
+  }
+  
+  .slick-track {
+    display: flex;
+  }
+  
+  .slide {
+    padding: 10px;
+  }
+  
+  .slide-image {
+    max-width: 100%;
+    height: auto;
+  }
+  

@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Home",
+      label: "Nosotros",
       href: "/",
     },
     {
@@ -14,7 +14,7 @@ export const siteConfig = {
     },
     {
       label: "Rental",
-      href: "/rental",
+      href: "https://native-adventure-rental.booqable.shop",
     },
   ],
   navMenuItems: [
@@ -28,10 +28,11 @@ export const siteConfig = {
     },
     {
       label: "Rental",
-      href: "/rental",
+      href: "https://native-adventure-rental.booqable.shop",
     },
   ],
   links: {
     instagram: "https://www.instagram.com/native.adventure",
+    rental: "https://native-adventure-rental.booqable.shop"
   },
 };

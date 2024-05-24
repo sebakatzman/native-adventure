@@ -3,6 +3,6 @@ export interface IInicio {
   description: string;
   firstTitle: string;
   secondTitle: string;
-  order: number;
+  priority: number;
   image: string;
 }

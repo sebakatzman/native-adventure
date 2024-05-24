@@ -49,25 +49,6 @@ export default function RootLayout({
       <Navbar />
       <main className="flex-grow max-w-full mx-auto">{children}</main>
     </Providers>
-    {/* <footer className="bg-background">
-      <div className="max-w-full mx-auto p-16">
-        <div className="flex flex-col md:flex-row justify-evenly items-center md:items-start">
-          <div className="my-9 md:mb-0 my-2">
-            <NextLink href="/">
-              <Image
-                src={"/images/yaghan-adventure-b.svg"}
-                width={120}
-                height={120}
-                alt={"dsa"}
-              />
-            </NextLink>
-          </div>
-          <div className="my-9">
-            <span className="text-default-600">2023 © Native Adventure. Todos los derechos reservados.</span>
-          </div>
-        </div>
-      </div>
-    </footer> */}
   </body>
 </html>
   );

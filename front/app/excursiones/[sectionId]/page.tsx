@@ -11,6 +11,8 @@ import { IExcurcion } from "@/Models/IExcursion";
 import AccessTimeFilledOutlinedIcon from '@mui/icons-material/AccessTimeFilledOutlined';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import Image from "next/image";
+
 
 export default function SectionDetail({
   params,
@@ -82,7 +84,7 @@ export default function SectionDetail({
           <Select
             defaultSelectedKeys={["TODAS"]}
             label="Dificultad"
-            value={dificultad}
+            value={dificultad}    
             onChange={handleChange}
           >
             <SelectItem key="TODAS" value="TODAS">
@@ -101,57 +103,80 @@ export default function SectionDetail({
         </FormControl>
       </div>
       <div className="pt-4">
-        <div className="flex flex-wrap justify-around">
-          {excursionesFilter?.map((excursion) => (
-            <div key={excursion.id} className={"p-4"} onClick={() =>
-              router.push(`/excursionDetail/${excursion.id}`)
-            }>
-              <Card
-                className="max-w-sm rounded-inherit"
-                imgAlt="Meaningful alt text for an image that is not purely decorative"
-                imgSrc={excursion.image}
+      <div className="pt-4">
+      {/* <div className="flex flex-wrap justify-around">
+        {excursionesFilter?.map((excursion) => (
+          <div key={excursion.id} className="p-4 relative" onClick={() =>
+            router.push(`/excursionDetail/${excursion.id}`)
+          }>
+            <div className="absolute top-0 left-0 w-full h-full opacity-50 bg-gray-800 rounded-lg"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
+              <h5 className="text-2xl font-bold text-white">{excursion.name}</h5>
+              <Button
+                size="md"
+                color="warning"
+                onClick={() =>
+                  router.push(`/excursionDetail/${excursion.id}`)
+                }
+                className="mt-4"
               >
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  {excursion.name}
-                </h5>
-
-                {/* <div style={{display: "flex", alignContent: "center", justifyContent: "space-around", alignItems: "center"}}>
-                  <div className="flex flex-col items-center p-2 color-black">
-                    <AccessTimeFilledOutlinedIcon style={{ color: "black" }}></AccessTimeFilledOutlinedIcon>
-                    <p style={{ color: "black" }}> {excursion.duration}</p>
-                  </div>
-
-                  <div className="flex flex-col items-center p-2 color-black">
-                    <AttachMoneyOutlinedIcon style={{ color: "black" }}></AttachMoneyOutlinedIcon>
-                    <p style={{ color: "black" }}>{excursion.price}</p>
-                  </div>
-
-                  <div className="flex flex-col items-center p-2">
-                    <WarningAmberIcon style={{ color: "black" }} ></WarningAmberIcon>
-                    <p style={{ color: "black" }}> {excursion.difficulty} </p>
-                  </div>
-
-                </div> */}
-
-                <div className="flex justify-around pb-2">
-                  <Button
-                    size="md"
-                    color="warning"
-                    onClick={() =>
-                      router.push(`/excursionDetail/${excursion.id}`)
-                    }
-                  >
-                    VER
-                  </Button>
-                  {/* <Button size="md" color="warning" onClick={() => router.push(`/reserva/${excursion.id}`)} >
-                    RESERVAR
-                  </Button> */}
-                </div>
-              </Card>
+                VER
+              </Button>
             </div>
-          ))}
+            <Image
+              src={excursion.image}
+              width={400}
+              height={300}
+              alt={excursion.name}
+              className="rounded-lg"
+            />
+          </div>
+        ))}
+      </div> */}
+       <div className="max-w-screen-lg mx-auto p-8">
+        <div className="grid grid-cols-1 gap-8">
+          {excursionesFilter &&
+            excursionesFilter.map((excursion) => (
+              <div
+                key={excursion.id}
+                className="p-4 rounded-lg shadow-md relative text-center"
+                onClick={() => router.push(`/excursionDetail/${excursion.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
+                <h1
+                  style={{
+                    color: "#ffffff", // Color blanco
+                    fontSize: "calc(3vw + 20px)",
+                    lineHeight: "1.2",
+                    fontWeight: "700",
+                    fontFamily: "serif",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                  }}
+                >
+                  {excursion.name.toUpperCase()}
+                </h1>
+                <div className="relative">
+                  <div className="absolute top-0 left-0 w-full h-full opacity-50 bg-gray-800 rounded-md"></div>
+                  <Image
+                    src={excursion.image}
+                    width={1200}
+                    height={600}
+                    alt={excursion.name}
+                    className="rounded-md"
+                    />
+                </div>
+              </div>
+            ))}
         </div>
       </div>
+</div>
+
+</div>
+
     </div>
   );
 }

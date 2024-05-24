@@ -40,7 +40,7 @@ function Contacto() {
       <div className="p-16" style={{ backgroundColor: "#f6f8f9" }}>
         <div className="bg-white pb-20 flex flex-col gap-5 md:grid md:grid-cols-2 p-10 border border-gray-300 md:items-center justify-items-center ">
           <div className="flex flex-col gap-3">
-            <h3 className="text-black font-bold"> Dirección</h3>
+            {/* <h3 className="text-black font-bold"> Dirección</h3> */}
             <p style={{ color: "#ffaa00", fontWeight: "bold" }}>
               <Place
                 style={{ color: "#ffaa00", marginRight: "10px" }}
@@ -73,7 +73,7 @@ function Contacto() {
           </div>
 
           <div className="text-gray-600 flex flex-col gap-3">
-            <h3 className=" text-black font-bold ">Horarios</h3>
+            {/* <h3 className=" text-black font-bold ">Horarios</h3> */}
             <p>
               <AccessTime
                 style={{ color: "#ffaa00", marginRight: "10px" }}

@@ -20,31 +20,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { Button } from "@nextui-org/button";
 export const Navbar = () => {
   const [whatsapp, setWhatsapp] = useState(`https://wa.me/2901614736`);
-
-  // useEffect(() => {
-  //   getContacs();
-  // }, []);
-
-  // const getContacs = async () => {
-  //   const info = await obtenerInformacion();
-  //   const contact = info[0];
-  //   const wp =  `https://wa.me/${contact.telefono}`
-  //   setWhatsapp(wp);
-  // };
-
-  // const obtenerInformacion = async (): Promise<IContacts[]> => {
-  //   try {
-  //     const url = process.env.base_url;
-  //     const response: AxiosResponse<IContacts[]> = await axios.get(
-  //       `${url}contacts`
-  //     );
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error("Error al obtener la información desde la API", error);
-  //     throw error;
-  //   }
-  // };
-
   return (
     <NextUINavbar maxWidth="xl" position="sticky" className="bg-black" >
       <NavbarBrand as="li" className="min-w-40 min-h-16" >
@@ -66,7 +41,6 @@ export const Navbar = () => {
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
-                //style={{fontWeight: "bold"}}
                 color="foreground"
                 href={item.href}
               >
@@ -127,6 +101,7 @@ export const Navbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          
         </div>
       </NavbarMenu>
     </NextUINavbar>

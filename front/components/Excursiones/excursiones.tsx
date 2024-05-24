@@ -3,18 +3,11 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ISeccionExcursion } from "@/Models/ISeccionExcursion";
 import SeccionBlack from "../seccionBlack";
-import Link from "next/link";
 import { RenderIconExcursion } from "./RenderIconExcursion";
-import Slider from "react-slick";
-import { IComments } from "@/Models/IComments";
 import axios, { AxiosResponse } from "axios";
 import { Checkbox } from "@nextui-org/react";
-import { IExcurcion } from "@/Models/IExcursion";
-import { Button } from "@nextui-org/button";
-import { env } from "process";
 import { IDetailSection } from "@/Models/IDetailSection";
 import { IItems } from "@/Models/IItems";
-import { log } from "console";
 
 const description =
   "Nos motiva diseñar y crear excursiones que resulten imborrables. Te " +
@@ -41,6 +34,7 @@ function Excursiones() {
         urlCompleta
       );
       const info: ISeccionExcursion[] = response.data;
+      info.sort((a, b) => a.order - b.order);
       return info;
     } catch (error) {
       console.error("Error al obtener la información desde la API", error);
@@ -123,14 +117,6 @@ function Excursiones() {
 
   return (
     <div>
-      <div className="text-center m-auto mx-16 flex justify-center">
-        <div className="max-w-xl">
-          <SeccionBlack
-            titulo={"Excursiones"}
-            descripcion={description}
-          ></SeccionBlack>
-        </div>
-      </div>
       <div
         className="py-8 bg-white content-center"
         style={{
@@ -164,7 +150,6 @@ function Excursiones() {
               ))}
           </div>
           <div className="md:grid md:grid-cols-3 items-center  justify-items-center flex flex-col">
-            {/* <div className="flex flex-col"> */}
             {infoExcursionSelected?.detailSections?.map((element) => (
               <div
                 className="text-black pr-10 flex flex-col items-start col-span-2 pl-5 pt-4"

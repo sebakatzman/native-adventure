@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* rotate-scale-up-diag-2 {
-	-webkit-animation: rotate-scale-up-diag-2 0.7s linear both;
-	        animation: rotate-scale-up-diag-2 0.7s linear both;
-} */
-
 .excursion-card {
 	width: 300px;
 	height: 500px;
@@ -30,4 +25,105 @@
 	padding: 10px;
 	color: white;
 	text-align: center;
+  }
+  
+  .slick-list {
+	overflow: hidden;
+	padding: 0; 
+	margin: 0;
+	width: 100%
+  }
+  
+  .slick-track {
+	display: flex;
+	align-items: center;
+  }
+  
+  .slide {
+	padding: 10px;
+	text-align: center;
+	box-sizing: border-box;
+  }
+  
+  .slide-image {
+	max-width: 100%;
+	height: auto;
+  }
+  
+  .slider-container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0; /* Asegura que el padding no cause desbordamiento */
+	box-sizing: border-box;
+  }
+  
+  .slick-slider {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .slick-prev,
+  .slick-next {
+	background-color: transparent;
+	border: none;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-indent: -9999px;
+  }
+  
+  .slick-prev::before,
+  .slick-next::before {
+	font-size: 30px;
+	line-height: 1;
+	color: black;
+	content: '‹'; /* Set default arrows */
+  }
+  
+  .slick-next::before {
+	content: '›';
+  }
+  
+  .slick-dots {
+	display: none;
+  }
+  
+  .slick-slide img {
+	width: 100%;
+	height: auto;
+  }
+  
+  @media (max-width: 1020px) {
+	.slider-container-excursion .slick-list	{
+		width:  90%; /* Porcentaje del ancho del contenedor padre */
+		max-width: 500px; /* Ancho máximo para evitar que el slider se extienda demasiado */
+	}
+}
+
+@media (max-width: 600px) {
+	.slider-container-excursion .slick-list	{
+		width: 80%; /* Porcentaje del ancho del contenedor padre */
+		max-width: 400px; /* Ancho máximo para evitar que el slider se extienda demasiado */
+	}
+	
+}
+  
+@media (max-width: 500px) {
+	.slider-container-excursion .slick-list	{
+		width: 80%; /* Porcentaje del ancho del contenedor padre */
+		max-width: 300px; /* Ancho máximo para evitar que el slider se extienda demasiado */
+	}
+	
+}
+
+@media (max-width: 600px) {
+	.excursion-title {
+	  font-size: 40px;
+	  line-height: 48px;
+	}
   }

@@ -15,9 +15,8 @@ function Inicio() {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
-    //autoplaySpeed: 2000,
-    pauseOnHover: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   const [inicioObject, setInicioObject] = useState<IInicio[]>();
@@ -39,6 +38,7 @@ function Inicio() {
         urlCompleta
       );
       const info: IInicio[] = response.data;
+      info.sort((a, b) => a.priority - b.priority);
       return info;
     } catch (error) {
       console.error("Error al obtener la información desde la API", error);
@@ -60,26 +60,40 @@ function Inicio() {
     };
   }, []);
 
-  const getButton = (x: IInicio) => {
-    const title = x.firstTitle.toUpperCase(); 
+  // const getButton = (x: IInicio) => {
+  //   const title = x.firstTitle.toUpperCase(); 
 
-    if (title == "E-BIKES" || title == "TREKKING" || title == "CANOAS" ) {
-      return (
-        <Button size="md"
-        color="warning" onClick={() => router.push(`/excursiones`)} >
-          Ver Más
-        </Button>
-      );
+  //   if (title == "E-BIKES" || title == "TREKKING" || title == "CANOAS" ) {
+  //     return (
+  //       <Button size="md"
+  //       color="warning" onClick={() => router.push(`/excursiones`)} >
+  //         Ver Más
+  //       </Button>
+  //     );
+  //   }
+
+  // };
+
+  const handleRedirection = (obj: any) => {
+
+    const title = obj.secondTitle.toUpperCase();
+
+    if ( title === "EXCURSIONES") {
+      router.push("/excursiones");
     }
 
-  };
+    if (title === "YAGHAN HOSTEL")
+      router.push("https://yaghanhostel.com/");
+  }
 
   return (
     <div className="pr-7 pl-7">
       <Slider {...settings}>
         {inicioObject &&
           inicioObject.map((x) => (
-            <div key={x.id} className="relative">
+            <div key={x.id} className="relative" onClick={(x) => {
+             handleRedirection(x);
+            }}>
               <div className="absolute inset-0 bg-black opacity-50"></div>
               <Image src={x.image} width={1200} alt="dsa" height={100} style={{ width: "100%" }} />
               <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", padding: "10px" }}>
@@ -93,7 +107,7 @@ function Inicio() {
                       fontFamily: "serif",
                     }}
                   >
-                    {x.firstTitle.toUpperCase()}
+                    {x.firstTitle != null ?  x.firstTitle.toUpperCase() : ""}
                   </h1>
                   <br />
                   <h1
@@ -109,16 +123,12 @@ function Inicio() {
                   >
                     {x.secondTitle.toUpperCase()}
                   </h1>
-                  <Divider className="my-4"></Divider>
                   <div className="hidden lg:block">
                     <div style={{ color: "#fff", marginBottom: "25px" }}>
                       {x.description}
                     </div>
                   </div>
-
-                  {getButton(x)}
-
-                  <Divider className="my-4 color"></Divider>
+                  {/* {getButton(x)} */}
                 </div>
               </div>
             </div>
