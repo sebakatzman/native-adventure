@@ -60,23 +60,9 @@ function Inicio() {
     };
   }, []);
 
-  // const getButton = (x: IInicio) => {
-  //   const title = x.firstTitle.toUpperCase(); 
-
-  //   if (title == "E-BIKES" || title == "TREKKING" || title == "CANOAS" ) {
-  //     return (
-  //       <Button size="md"
-  //       color="warning" onClick={() => router.push(`/excursiones`)} >
-  //         Ver Más
-  //       </Button>
-  //     );
-  //   }
-
-  // };
-
   const handleRedirection = (obj: any) => {
-
-    const title = obj.secondTitle.toUpperCase();
+    
+    const title = obj.secondTitle != null ? obj.secondTitle.toUpperCase() : "";
 
     if ( title === "EXCURSIONES") {
       router.push("/excursiones");
@@ -121,14 +107,13 @@ function Inicio() {
                       fontFamily: "serif",
                     }}
                   >
-                    {x.secondTitle.toUpperCase()}
+                    {x.secondTitle != null ? x.secondTitle.toUpperCase() : ""}
                   </h1>
                   <div className="hidden lg:block">
                     <div style={{ color: "#fff", marginBottom: "25px" }}>
                       {x.description}
                     </div>
                   </div>
-                  {/* {getButton(x)} */}
                 </div>
               </div>
             </div>
