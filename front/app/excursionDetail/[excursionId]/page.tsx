@@ -152,9 +152,7 @@ export default function ExcursionDetail({
           ))}
         </Slider>
       )}
-    </div> 
-    
-
+    </div>
       <div className="mt-8">
         <p className="text-lg leading-relaxed tracking-wide text-justify">
           {excursionSelected && excursionSelected.description}

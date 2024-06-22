@@ -8,18 +8,19 @@ import FotosPage from "@/components/SeccionFotos/FotosPage";
 import ClientesContentos from "@/components/ClientesContentos/clientesContentos";
 import Contacto from "@/components/Contacto/contacto";
 import { NextUIProvider } from "@nextui-org/system";
+import React, { useEffect, useState } from "react";
+import ExcursionsPage from "@/components/SeccionExcursiones/ExcursionsPage";
 
 function Home() {
+
   return (
     <NextUIProvider>
-      <div>
-        <Inicio></Inicio>
-        <Excursiones></Excursiones>
-        <ImagenDescripcion></ImagenDescripcion>
-        <FotosPage></FotosPage>
-        <ClientesContentos></ClientesContentos>
-        <Contacto></Contacto>
-      </div>
+      <Inicio />
+      <Excursiones />
+      <ExcursionsPage />
+      <FotosPage />
+      <ClientesContentos />
+      <Contacto />
     </NextUIProvider>
   );
 }
