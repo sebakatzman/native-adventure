@@ -122,7 +122,7 @@ export default function ExcursionDetail({
   };
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <h1
         style={{
           color: "##ffaa00",
@@ -131,12 +131,12 @@ export default function ExcursionDetail({
           fontWeight: "700",
           fontFamily: "serif",
         }}
-        className="excursion-title"
+        className="excursion-title text-center"
       >
         {excursionSelected && excursionSelected.name.toUpperCase()}
       </h1>
 
-    <div className="slider-container-excursion">
+    <div className="slider-container-excursion mx-auto">
       {images && (
         <Slider {...settings}>
           {images.map((image, index) => (
@@ -189,7 +189,7 @@ export default function ExcursionDetail({
 
           <div className="flex flex-col items-center p-2">
             <AccessTimeIcon></AccessTimeIcon>
-            <p>DURACIÒN</p>
+            <p>DURACIÓN</p>
             {excursionSelected.duration}
           </div>
 

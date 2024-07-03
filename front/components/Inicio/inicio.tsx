@@ -4,9 +4,8 @@ import axios, { AxiosResponse } from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { Divider } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
+import styles from './Inicio.module.css';
 
 function Inicio() {
   const router = useRouter();
@@ -60,30 +59,16 @@ function Inicio() {
     };
   }, []);
 
-  const handleRedirection = (obj: any) => {
-    
-    const title = obj.secondTitle != null ? obj.secondTitle.toUpperCase() : "";
-
-    if ( title === "EXCURSIONES") {
-      router.push("/excursiones");
-    }
-
-    if (title === "YAGHAN HOSTEL")
-      router.push("https://yaghanhostel.com/");
-  }
-
   return (
-    <div className="pr-7 pl-7">
+    <div className={styles.sliderContainer}>
       <Slider {...settings}>
         {inicioObject &&
           inicioObject.map((x) => (
-            <div key={x.id} className="relative" onClick={(x) => {
-             handleRedirection(x);
-            }}>
+            <div key={x.id} className={`relative ${styles.sliderItem}`} >
               <div className="absolute inset-0 bg-black opacity-50"></div>
-              <Image src={x.image} width={1200} alt="dsa" height={100} style={{ width: "100%" }} />
-              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", padding: "10px" }}>
-                <div className="banner-center-box text-center" style={{ opacity: opacity }} >
+              <Image src={x.image} layout="fill" objectFit="cover" alt={x.firstTitle || ""} />
+              <div className={styles.centerContent}>
+                <div className="banner-center-box text-center" style={{ opacity: opacity }}>
                   <h1
                     style={{
                       color: "##ffaa00",
@@ -93,7 +78,7 @@ function Inicio() {
                       fontFamily: "serif",
                     }}
                   >
-                    {x.firstTitle != null ?  x.firstTitle.toUpperCase() : ""}
+                    {x.firstTitle != null ? x.firstTitle.toUpperCase() : ""}
                   </h1>
                   <br />
                   <h1

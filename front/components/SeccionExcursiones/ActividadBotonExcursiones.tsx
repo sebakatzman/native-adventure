@@ -4,35 +4,36 @@ import { useEffect, useState } from "react";
 import ImageExcursionGrid from "./ImageExcursionGrid";
 
 function ActividadBotonExcursiones() {
-  const handleActivityClick = (id: number) => {
-    setSectionId(id);
+  const [sections, setSections] = useState<ISeccionExcursion[]>();
+  const [sectionSelected, setSectionSelected] = useState<ISeccionExcursion>();
+
+  const handleSection = (sect: ISeccionExcursion) => {
+    setSectionSelected(sect);
   };
 
-  const [sections, setSections] = useState<ISeccionExcursion[]>();
-  const [sectionId, setSectionId] = useState(0);
-
-  const getData = async () => {
+  const getSections = async () => {
     const url = process.env.base_url;
-    const response = await axios.get<[]>(`${url}section-images`);
-    setSections(response.data);
-    // if (response.data.length > 0) {
-    //   setExcursionId(response.data[0].id); // Establece el primer ID como seleccionado por defecto
-    // }
+    const response = await axios.get<ISeccionExcursion[]>(`${url}sections`);
+    const filteredSections = response.data.filter(x => x.has_excursions);
+    setSections(filteredSections);
+    if (filteredSections.length > 0) {
+      setSectionSelected(filteredSections[0]);
+    }
   };
 
   useEffect(() => {
-    getData();
+    getSections();
   }, []);
 
   return (
     <div className="flex flex-col justify-center">
-      <ul className="text-center flex gap-10 justify-center font-bold  list-none text-black  mb-10">
+      <ul className="text-center flex gap-10 justify-center font-bold list-none text-black mb-10">
         {sections?.map((section) => (
           <li
             key={section.id}
-            className={`cursor-pointer ${sectionId == section.id && "underline"}`}
+            className={`cursor-pointer ${section === sectionSelected ? "underline" : ""}`}
             style={{ textDecorationColor: "#ffaa00" }}
-            onClick={() => handleActivityClick(section.id)}
+            onClick={() => handleSection(section)}
           >
             {section.name}
           </li>
@@ -40,9 +41,8 @@ function ActividadBotonExcursiones() {
       </ul>
 
       <div>
-        <ImageExcursionGrid selectedActivity={sectionId} />
+        <ImageExcursionGrid sectionId={sectionSelected?.id} />
       </div>
-      {/* Agrega más botones para otras actividades si es necesario */}
     </div>
   );
 }

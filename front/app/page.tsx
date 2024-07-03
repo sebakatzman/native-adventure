@@ -16,8 +16,8 @@ function Home() {
   return (
     <NextUIProvider>
       <Inicio />
-      <Excursiones />
       <ExcursionsPage />
+      <Excursiones />
       <FotosPage />
       <ClientesContentos />
       <Contacto />

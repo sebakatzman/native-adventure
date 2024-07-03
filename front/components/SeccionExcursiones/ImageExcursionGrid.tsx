@@ -1,53 +1,66 @@
+import { IExcurcion } from "@/Models/IExcursion";
+import { IImagesExcursion } from "@/Models/IImagesExcursion";
 import { ISectionImageDetail } from "@/Models/ISectionImageDetail";
-import { Image } from "@nextui-org/react";
+import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ImageGridProps {
-  selectedActivity: number | null;
+  sectionId: number | undefined;
 }
-const ImageExcursionGrid: React.FC<ImageGridProps> = ({ selectedActivity }) => {
+const ImageExcursionGrid: React.FC<ImageGridProps> = ({ sectionId }) => {
 
-  const [excursionesDetail, setExcursionesDetail] = useState<
-    ISectionImageDetail[]
+  const router = useRouter();
+  const [imagesExcursions, setImagesExcursions] = useState<
+    IImagesExcursion[]
   >([]);
 
-  const getData = async () => {
+  const [excursions, setExcursions] = useState<IExcurcion[]>()
+
+  //Obtengo las excursiones
+  const getExcursions = async () => {
     const url = process.env.base_url;
-    const response = await axios.get<ISectionImageDetail[]>(
-      `${url}section-image-details`
+    const response = await axios.get<IExcurcion[]>(
+      `${url}excursions`
     );
-    setExcursionesDetail(response.data);
+    if (response.data.length > 0) {
+      let excursionsData = response.data;
+      excursionsData = excursionsData.filter(x => x.section == sectionId);
+      setExcursions(excursionsData);
+    }
   };
 
   useEffect(function () {
-    getData();
-  }, []);  
+    sectionId != undefined && getExcursions();
+  }, [sectionId]);
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {excursionesDetail
-        .filter((fil) =>
-          selectedActivity == 0
-            ? fil.section_image !== selectedActivity
-            : fil.section_image == selectedActivity
-        )
-        .map((exDetail) => (
-          <div
-            key={exDetail.id}
-            className="w-full h-full transform transition-transform duration-500 hover:scale-105 hover:translate-x-2"
-          >
+  const handleExcursionClick = (excursionId: number) => {
+    router.push(`/excursionDetail/${excursionId}`);
+  };
+
+   return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      { excursions && excursions.map(excursion => (
+        <div key={excursion.id} className="relative group cursor-pointer"
+        onClick={() => handleExcursionClick(excursion.id)}
+        >
+          <div className="relative w-full h-64">
             <Image
-              isBlurred
-              isZoomed
-              src={exDetail.image}
-              width={1200}
-              alt="dsa"
-              height={760}
-              className="w-full h-80 lg:h-64 md:h-48 sm:h-auto object-cover"
+              src={excursion.image}
+              alt={excursion.name}
+              layout="fill"
+              objectFit="cover"
+              className="opacity-80 group-hover:opacity-100 transition-opacity duration-300"
             />
           </div>
-        ))}
+          <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 p-4">
+            <h3 className="text-white text-lg font-bold">{excursion.name}</h3>
+            {/* <p className="text-white text-sm font-bold">{excursion.difficulty}</p> */}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
