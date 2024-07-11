@@ -9,6 +9,7 @@ import clsx from "clsx";
 import NextLink from "next/link";
 import Script from "next/script";
 import Image from "next/image";
+import WhatsAppIcon from "@/components/whatsappIcon";
 /* import "./globals.css"; */
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function RootLayout({
     <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
       <Navbar />
       <main className="flex-grow max-w-full mx-auto">{children}</main>
+        <WhatsAppIcon></WhatsAppIcon>
     </Providers>
   </body>
 </html>

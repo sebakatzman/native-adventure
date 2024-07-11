@@ -48,11 +48,11 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
-          {whatsapp && (
+          {/* {whatsapp && (
             <Link href={whatsapp} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon style={{ color: "green" }} />
             </Link>
-          )}
+          )} */}
 
           <Link href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer">
             <InstagramIcon style={{ color: "#F45D7A" }} ></InstagramIcon>
@@ -67,15 +67,15 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        {whatsapp && (
+        {/* {whatsapp && (
           <Link href={whatsapp} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon style={{ color: "green" }} />
           </Link>
-        )}
+        )} */}
 
-        <Link href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer">
+        {/* <Link href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer">
           <InstagramIcon style={{ color: "#F45D7A" }} ></InstagramIcon>
-        </Link>
+        </Link> */}
 
         {/* <a href="https://www.yaghanhostel.com" target="_blank" rel="noopener noreferrer">
           <Button size="sm" color="warning">
