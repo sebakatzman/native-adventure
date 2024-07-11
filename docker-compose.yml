@@ -1,31 +1,31 @@
 version: '3.1'
 
 services:
-  api:
-    container_name: api
+  api_test:
+    container_name: api_test
     restart: always
     build: 
       context: ./back
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8002
     ports: 
-      - "8000:8000"
+      - "8002:8002"
     networks:
-      - native-adventur-network
+      - test-native-adventure-network
 
-  web:
-    container_name: web
+  web_test:
+    container_name: web_test
     restart: always
     build: 
       context: ./front
       dockerfile: Dockerfile
     ports: 
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
-      - api
+      - api_test
     networks:
-      - native-adventur-network
+      - test-native-adventure-network
 
 networks:
-  native-adventur-network:
+  test-native-adventure-network:
     driver: bridge

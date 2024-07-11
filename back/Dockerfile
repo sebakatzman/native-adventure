@@ -17,8 +17,8 @@ RUN mkdir -p /code/static
 # Copia todo el contenido de la carpeta actual a /code.
 COPY . /code/
 
-# Expone el puerto 8000.
-EXPOSE 8000
+# Expone el puerto 8001.
+EXPOSE 8001
 
 # Ejecuta el comando "python manage.py runserver
 CMD ["python", "manage.py", "runserver"]

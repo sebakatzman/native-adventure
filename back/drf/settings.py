@@ -58,9 +58,11 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     "http://127.0.0.1:3000",
-    "http://native-adventure.com",
-    "http://testing-native-adventure.com"
+    "https://native-adventure.com",
+    "https://testing.native-adventure.com"
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://testing.native-adventure.com']
 
 
 CORS_ALLOW_ALL_ORIGINS = True
