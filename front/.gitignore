@@ -50,3 +50,29 @@ next-env.d.ts
 # Ignore any temporary files
 tmp/
 temp/
+
+# Docker
+docker-compose.yml
+Dockerfile
+
+# Terminal
+.zshrc
+.bashrc
+.bash_profile
+
+# Formatting and Linting
+.prettierignore
+.eslintcache
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Linux
+.directory
+
+# GitHub Actions
+.github/
+
+# Travis CI
+.travis.yml
