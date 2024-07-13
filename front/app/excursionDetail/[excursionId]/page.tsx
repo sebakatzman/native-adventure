@@ -122,38 +122,33 @@ export default function ExcursionDetail({
   };
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <h1
         style={{
-          color: "##ffaa00",
+          color: "#ffaa00",
           fontSize: "50px",
           lineHeight: "82px",
           fontWeight: "700",
           fontFamily: "serif",
         }}
-        className="excursion-title"
+        className="excursion-title text-center"
       >
         {excursionSelected && excursionSelected.name.toUpperCase()}
       </h1>
 
-    <div className="slider-container-excursion">
-      {images && (
-        <Slider {...settings}>
-          {images.map((image, index) => (
-            <div key={index} className="slide">
-              <Image
-                src={image.src}
-                alt={`Slide ${index + 1}`}
-                width={400}
-                height={200}
-                className="slide-image"
-              />
-            </div>
-          ))}
-        </Slider>
-      )}
-    </div> 
-    
+      <div className="images-grid mx-auto">
+        {images && images.map((image, index) => (
+          <div key={index} className="image-item">
+            <Image
+              src={image.src}
+              alt={`Excursion image ${index + 1}`}
+              width={800}
+              height={450}
+              className="image"
+            />
+          </div>
+        ))}
+      </div>
 
       <div className="mt-8">
         <p className="text-lg leading-relaxed tracking-wide text-justify">
@@ -162,42 +157,33 @@ export default function ExcursionDetail({
       </div>
 
       {excursionSelected && (
-        <div
-          className="p-12"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-around",
-            paddingInline: "40px"
-          }}
-        >
+        <div className="p-12 flex flex-wrap justify-around">
           <div className="flex flex-col items-center p-2">
-            <WarningAmberIcon></WarningAmberIcon>
+            <WarningAmberIcon />
             <p>DIFICULTAD</p>
             {excursionSelected.difficulty}
           </div>
 
           <div className="flex flex-col items-center p-2">
-            <EditLocationIcon></EditLocationIcon>
+            <EditLocationIcon />
             <p>DISTANCIA</p>
             {excursionSelected.distance}
           </div>
 
           <div className="flex flex-col items-center p-2">
-            <CallMadeIcon></CallMadeIcon>
+            <CallMadeIcon />
             <p>DESNIVEL</p>
             {excursionSelected.slope}
           </div>
 
           <div className="flex flex-col items-center p-2">
-            <AccessTimeIcon></AccessTimeIcon>
-            <p>DURACIÒN</p>
+            <AccessTimeIcon />
+            <p>DURACIÓN</p>
             {excursionSelected.duration}
           </div>
-
         </div>
       )}
-      <ReserveForm excursionSelected={excursionSelected}></ReserveForm>
+      <ReserveForm excursionSelected={excursionSelected} />
     </div>
   );
 }

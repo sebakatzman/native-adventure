@@ -1,9 +1,5 @@
-import { IExcurcion } from "@/Models/IExcursion";
-import { ISeccionExcursion } from "@/Models/ISeccionExcursion";
 import { ISectionImages } from "@/Models/ISectionImage";
-import { ISectionImageDetail } from "@/Models/ISectionImageDetail";
 import axios from "axios";
-import { env } from "process";
 import { useEffect, useState } from "react";
 import ImageGrid from "./ImagesGrid";
 
@@ -19,6 +15,9 @@ function ActividadBoton() {
     const url = process.env.base_url;
     const response = await axios.get<ISectionImages[]>(`${url}section-images`);
     setSectionImages(response.data);
+    if (response.data.length > 0) {
+      setExcursionId(response.data[0].id); // Establece el primer ID como seleccionado por defecto
+    }
   };
 
   useEffect(() => {
@@ -28,13 +27,6 @@ function ActividadBoton() {
   return (
     <div className="flex flex-col justify-center">
       <ul className="text-center flex gap-10 justify-center font-bold  list-none text-black  mb-10">
-        <li
-          className={`cursor-pointer ${excursionId == 0 && "underline"}`}
-          style={{ textDecorationColor: "#ffaa00" }}
-          onClick={() => handleActivityClick(0)}
-        >
-          TODOS
-        </li>
         {sectionImages?.map((ex) => (
           <li
             key={ex.id}

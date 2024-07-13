@@ -104,35 +104,6 @@ export default function SectionDetail({
       </div>
       <div className="pt-4">
       <div className="pt-4">
-      {/* <div className="flex flex-wrap justify-around">
-        {excursionesFilter?.map((excursion) => (
-          <div key={excursion.id} className="p-4 relative" onClick={() =>
-            router.push(`/excursionDetail/${excursion.id}`)
-          }>
-            <div className="absolute top-0 left-0 w-full h-full opacity-50 bg-gray-800 rounded-lg"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-              <h5 className="text-2xl font-bold text-white">{excursion.name}</h5>
-              <Button
-                size="md"
-                color="warning"
-                onClick={() =>
-                  router.push(`/excursionDetail/${excursion.id}`)
-                }
-                className="mt-4"
-              >
-                VER
-              </Button>
-            </div>
-            <Image
-              src={excursion.image}
-              width={400}
-              height={300}
-              alt={excursion.name}
-              className="rounded-lg"
-            />
-          </div>
-        ))}
-      </div> */}
        <div className="max-w-screen-lg mx-auto p-8">
         <div className="grid grid-cols-1 gap-8">
           {excursionesFilter &&

@@ -50,11 +50,22 @@
 	height: auto;
   }
   
-  .slider-container {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0; /* Asegura que el padding no cause desbordamiento */
-	box-sizing: border-box;
+  .sliderContainer {
+	height: 100vh;
+	overflow: hidden;
+  }
+  
+  .sliderItem {
+	position: relative;
+	height: 100vh;
+  }
+  
+  .centerContent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 10px;
   }
   
   .slick-slider {
@@ -127,3 +138,112 @@
 	  line-height: 48px;
 	}
   }
+
+  .grid {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+	.grid {
+	  grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+  }
+  
+  @media (min-width: 1024px) {
+	.grid {
+	  grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+  }
+  
+  .relative {
+	position: relative;
+  }
+  
+  .group {
+	display: block;
+  }
+  
+  .group-hover\:opacity-100:hover {
+	opacity: 1;
+  }
+  
+  .transition-opacity {
+	transition: opacity 0.3s;
+  }
+  
+  .bg-opacity-50 {
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .group-hover\:bg-opacity-30:hover {
+	background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .images-grid {
+	display: grid;
+	gap: 1rem;
+  }
+  
+  .image-item {
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .image {
+	width: 100%;
+	height: auto;
+  }
+  
+  @media (min-width: 1024px) {
+	.images-grid {
+	  grid-template-columns: repeat(3, 1fr);
+	}
+  }
+  
+  @media (min-width: 768px) {
+	.images-grid {
+	  grid-template-columns: repeat(2, 1fr);
+	}
+  }
+  
+  @media (max-width: 767px) {
+	.images-grid {
+	  grid-template-columns: 1fr;
+	}
+  }
+
+  .whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    border-radius: 50%;
+    padding: 15px; /* Incrementa el tamaño del padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-icon-image {
+    width: 60px; /* Incrementa el tamaño de la imagen */
+    height: 60px; /* Incrementa el tamaño de la imagen */
+}
+
+@media (max-width: 600px) {
+    .whatsapp-icon {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px; /* Ajusta el padding para dispositivos móviles */
+    }
+
+    .whatsapp-icon-image {
+        width: 55px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
+        height: 55px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
+    }
+}

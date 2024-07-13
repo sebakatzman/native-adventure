@@ -1,29 +1,19 @@
-.large-container {
-    height: 36rem; /* Ajusta este valor según sea necesario */
-  }
-  
-  @media (min-width: 640px) {
-    .large-container {
-      height: 48rem; /* Ajusta este valor según sea necesario */
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    .large-container {
-      height: 64rem; /* Ajusta este valor según sea necesario */
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    .large-container {
-      height: 72rem; /* Ajusta este valor según sea necesario */
-    }
-  }
-  
-  .seba {
-    background-color: white;
-    width: 200;
-    height: 200;
-  }
-  
-  
+/* styles/globals.css o cualquier archivo CSS global */
+/* .slider-container-excursion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.slide-image {
+  max-width: 100%;
+  height: auto;
+} */

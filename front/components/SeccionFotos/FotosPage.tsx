@@ -6,7 +6,7 @@ import SeccionBlack from "../seccionBlack";
 function FotosPage() {
   return (
     <div>
-      <SeccionBlack titulo={"Fotos"} descripcion={""}></SeccionBlack>
+      {/* <SeccionBlack titulo={"Fotos"} descripcion={""}></SeccionBlack> */}
       <div className="bg-white pb-20 p-10">
         <ActividadBoton />
       </div>

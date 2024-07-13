@@ -1,0 +1,26 @@
+/* Inicio.module.css */
+.sliderContainer {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .sliderItem {
+    height: 100vh;
+    position: relative;
+  }
+  
+  .centerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
