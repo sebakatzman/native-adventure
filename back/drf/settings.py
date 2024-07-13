@@ -61,6 +61,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://testing.native-adventure.com'
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://testing.native-adventure.com']
+
 # Si no quieres permitir todos los orígenes, elimina esta línea
 # CORS_ALLOW_ALL_ORIGINS = True
 
