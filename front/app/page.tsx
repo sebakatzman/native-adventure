@@ -16,6 +16,7 @@ function Home() {
     <NextUIProvider>
       <Inicio />
       <ExcursionsPage />
+      <Inicio />
       <Excursiones />
       <FotosPage />
       <ClientesContentos />
