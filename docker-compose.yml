@@ -1,30 +1,36 @@
-version: '3.1'
-
 services:
   api_test:
     container_name: api_test
     restart: always
-    build: 
+    build:
       context: ./back
       dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8002
-    ports: 
+    ports:
       - "8002:8002"
+    environment:
+      - URL_FRONT=${URL_FRONT}
     networks:
       - test-native-adventure-network
+    volumes:
+      - ./back:/code
 
   web_test:
     container_name: web_test
     restart: always
-    build: 
+    build:
       context: ./front
       dockerfile: Dockerfile
-    ports: 
+    ports:
       - "3001:3001"
     depends_on:
       - api_test
+    links:
+      - api_test
     networks:
       - test-native-adventure-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
 networks:
   test-native-adventure-network:
