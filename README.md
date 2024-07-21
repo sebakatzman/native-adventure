@@ -24,4 +24,6 @@ $ # Configurar dominio del backend
 $ cd ..
 $ docker compose -f docker-compose.production.yml build
 $ docker compose -f docker-compose.production.yml up -d
+
+hola
 ```
