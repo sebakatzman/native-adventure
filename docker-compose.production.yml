@@ -1,0 +1,37 @@
+services:
+  api:
+    container_name: api
+    restart: always
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8001
+    ports:
+      - "8001:8001"
+    environment:
+      - URL_FRONT=${URL_FRONT}
+    networks:
+      - native-adventure-network
+    volumes:
+      - ./back:/code
+
+  web:
+    container_name: web
+    restart: always
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3001"
+    depends_on:
+      - api
+    links:
+      - api
+    networks:
+      - native-adventure-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+networks:
+  native-adventure-network:
+    driver: bridge
