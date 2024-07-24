@@ -26,7 +26,7 @@ const ImageExcursionGrid: React.FC<ImageGridProps> = ({ sectionId }) => {
     );
     if (response.data.length > 0) {
       let excursionsData = response.data;
-      excursionsData = excursionsData.filter(x => x.section == sectionId);
+      excursionsData = excursionsData.filter(x => x.section == sectionId).sort((a, b) => a.order - b.order);
       setExcursions(excursionsData);
     }
   };
