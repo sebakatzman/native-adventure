@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import styles from './Inicio.module.css';
 
 function Inicio() {
-  const router = useRouter();
   var settings = {
     dots: true,
     infinite: true,

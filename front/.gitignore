@@ -34,3 +34,45 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore custom server logs (if you have a custom server setup)
+/logs
+*.log
+
+# Ignore editor directories and files
+/.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Ignore any temporary files
+tmp/
+temp/
+
+# Docker
+docker-compose.yml
+Dockerfile
+
+# Terminal
+.zshrc
+.bashrc
+.bash_profile
+
+# Formatting and Linting
+.prettierignore
+.eslintcache
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Linux
+.directory
+
+# GitHub Actions
+.github/
+
+# Travis CI
+.travis.yml
